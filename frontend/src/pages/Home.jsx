@@ -12,12 +12,28 @@ const Home = () => {
 
   const barangays = ['Bagumbayan Norte', 'Concepcion Grande', 'Tinago', 'Balatas']
 
+  // Use fallback data immediately, then load real data in background
   useEffect(() => {
+    // Set fallback data immediately for fast initial render
+    const startDate = new Date(selectedDate)
+    const fallbackData = []
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(startDate)
+      date.setDate(date.getDate() + i)
+      fallbackData.push({
+        week: date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }),
+        risk: i < 3 ? 'Low' : i < 5 ? 'Moderate' : 'High',
+        probability: i < 3 ? 0.15 : i < 5 ? 0.45 : 0.65
+      })
+    }
+    setForecast(fallbackData)
+    setLoading(false)
+
+    // Load real data in background (non-blocking)
     loadForecast()
   }, [selectedBarangay, selectedDate])
 
   const loadForecast = async () => {
-    setLoading(true)
     try {
       const data = await getWeeklyPredictions(selectedBarangay, selectedDate)
       // Transform data to match chart format
@@ -37,18 +53,7 @@ const Home = () => {
       setForecast(weeklyData)
     } catch (error) {
       console.error('Error loading forecast:', error)
-      // Fallback data
-      setForecast([
-        { week: 'Fri, Apr 26', risk: 'Low', probability: 0.1 },
-        { week: 'Sat, Apr 27', risk: 'Low', probability: 0.15 },
-        { week: 'Sun, Apr 28', risk: 'Moderate', probability: 0.3 },
-        { week: 'Mon, Apr 29', risk: 'Moderate', probability: 0.4 },
-        { week: 'Tue, Apr 30', risk: 'Moderate', probability: 0.5 },
-        { week: 'Wed, May 1', risk: 'High', probability: 0.6 },
-        { week: 'Thu, May 2', risk: 'High', probability: 0.65 },
-      ])
-    } finally {
-      setLoading(false)
+      // Keep fallback data on error
     }
   }
 

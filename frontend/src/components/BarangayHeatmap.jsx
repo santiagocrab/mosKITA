@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { getAllBarangayPredictions } from '../services/api'
-import { fetchBarangayBoundaries, getBarangayCentroids } from '../data/barangayBoundaries'
+import { fetchBarangayBoundaries, getBarangayCentroids, getApproximateBoundaries } from '../data/barangayBoundaries'
 
 // Fix for default marker icon in React Leaflet
 if (typeof window !== 'undefined' && L.Icon && L.Icon.Default) {
@@ -103,6 +103,20 @@ const BarangayHeatmap = () => {
   }
 
   useEffect(() => {
+    // Set fallback data immediately for fast initial render
+    const fallbackBoundaries = getApproximateBoundaries()
+    setBarangayBoundaries(fallbackBoundaries)
+    setLoadingBoundaries(false)
+    
+    // Set fallback risks immediately
+    const fallbackRisks = {}
+    BARANGAY_NAMES.forEach(barangay => {
+      fallbackRisks[barangay] = 'Low'
+    })
+    setBarangayRisks(fallbackRisks)
+    setLoading(false)
+    
+    // Load real data in background (non-blocking)
     fetchAllPredictions()
     fetchBoundaries()
     
