@@ -65,24 +65,36 @@ const BarangayHeatmap = () => {
 
   const fetchBoundaries = async () => {
     try {
-      setLoadingBoundaries(true)
-      const boundaries = await fetchBarangayBoundaries()
+      // Add timeout to prevent hanging on slow API
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Timeout')), 5000)
+      )
+      
+      const boundaries = await Promise.race([
+        fetchBarangayBoundaries(),
+        timeoutPromise
+      ])
       setBarangayBoundaries(boundaries)
     } catch (error) {
       console.error('Error fetching boundaries:', error)
-      // Fallback to approximate boundaries
-      const { getApproximateBoundaries } = await import('../data/barangayBoundaries')
-      setBarangayBoundaries(getApproximateBoundaries())
-    } finally {
-      setLoadingBoundaries(false)
+      // Keep approximate boundaries on error
     }
   }
 
   const fetchAllPredictions = async () => {
     try {
-      setLoading(true)
+      // Don't set loading - keep showing fallback data
+      // Add timeout to prevent hanging
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Timeout')), 10000)
+      )
+      
       // This now uses the same weather data as barangay pages
-      const predictions = await getAllBarangayPredictions()
+      const predictions = await Promise.race([
+        getAllBarangayPredictions(),
+        timeoutPromise
+      ])
+      
       const risks = {}
       
       // Get current week's risk for each barangay
@@ -90,15 +102,14 @@ const BarangayHeatmap = () => {
         if (predictions[barangay].full_forecast && predictions[barangay].full_forecast.length > 0) {
           risks[barangay] = predictions[barangay].full_forecast[0].risk
         } else {
-          risks[barangay] = 'Unknown'
+          risks[barangay] = 'Low' // Default to Low instead of Unknown
         }
       })
       
       setBarangayRisks(risks)
     } catch (error) {
       console.error('Error fetching predictions:', error)
-    } finally {
-      setLoading(false)
+      // Keep fallback data on error
     }
   }
 
@@ -130,13 +141,12 @@ const BarangayHeatmap = () => {
 
   return (
     <div className="w-full h-[600px] rounded-lg overflow-hidden shadow-lg border-2 border-gray-200">
-      {(loading || loadingBoundaries) ? (
+      {/* Always show map - no loading state blocking render */}
+      {Object.keys(barangayBoundaries).length === 0 ? (
         <div className="w-full h-full flex items-center justify-center bg-gray-50">
           <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-red-600 border-t-transparent mb-4"></div>
-            <p className="text-gray-600 font-semibold">
-              {loadingBoundaries ? 'Loading barangay boundaries...' : 'Loading heatmap...'}
-            </p>
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-green-500 border-t-transparent mb-4"></div>
+            <p className="text-gray-600 font-semibold">Loading map...</p>
           </div>
         </div>
       ) : (
