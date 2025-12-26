@@ -9,6 +9,10 @@ const Home = lazy(() => import('./pages/Home'))
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'))
 const BarangayPage = lazy(() => import('./pages/BarangayPage'))
 const InformationDesk = lazy(() => import('./pages/InformationDesk'))
+const ReportCase = lazy(() => import('./pages/ReportCase'))
+const Barangays = lazy(() => import('./pages/Barangays'))
+const NotFound = lazy(() => import('./pages/NotFound'))
+import Chatbot from './components/Chatbot'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -105,6 +109,51 @@ function App() {
             }
           />
           <Route
+            path="/penafrancia"
+            element={
+              <div className="min-h-screen bg-gray-50">
+                <PublicNavbar />
+                <BarangayPage barangay="Peñafrancia" />
+              </div>
+            }
+          />
+          <Route
+            path="/cararayan"
+            element={
+              <div className="min-h-screen bg-gray-50">
+                <PublicNavbar />
+                <BarangayPage barangay="Cararayan" />
+              </div>
+            }
+          />
+          <Route
+            path="/calauag"
+            element={
+              <div className="min-h-screen bg-gray-50">
+                <PublicNavbar />
+                <BarangayPage barangay="Calauag" />
+              </div>
+            }
+          />
+          <Route
+            path="/barangays"
+            element={
+              <div className="min-h-screen bg-gray-50">
+                <PublicNavbar />
+                <Barangays />
+              </div>
+            }
+          />
+          <Route
+            path="/report"
+            element={
+              <div className="min-h-screen bg-gray-50">
+                <PublicNavbar />
+                <ReportCase />
+              </div>
+            }
+          />
+          <Route
             path="/information"
             element={
               <div className="min-h-screen bg-gray-50">
@@ -113,7 +162,17 @@ function App() {
               </div>
             }
           />
+          <Route
+            path="*"
+            element={
+              <div className="min-h-screen bg-gray-50">
+                <PublicNavbar />
+                <NotFound />
+              </div>
+            }
+          />
         </Routes>
+        <Chatbot />
       </Suspense>
     </Router>
   )

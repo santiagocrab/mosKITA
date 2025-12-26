@@ -1,9 +1,29 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const PublicNavbar = () => {
   const location = useLocation()
   const [isOpen, setIsOpen] = useState(false)
+  const [darkMode, setDarkMode] = useState(false)
+
+  useEffect(() => {
+    const isDark = localStorage.getItem('darkMode') === 'true'
+    setDarkMode(isDark)
+    if (isDark) {
+      document.documentElement.classList.add('dark')
+    }
+  }, [])
+
+  const toggleDarkMode = () => {
+    const newMode = !darkMode
+    setDarkMode(newMode)
+    localStorage.setItem('darkMode', newMode.toString())
+    if (newMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }
 
   const isActive = (path) => location.pathname === path
 
@@ -16,7 +36,7 @@ const PublicNavbar = () => {
   ]
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md border-b border-gray-200">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-dark shadow-md border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center space-x-3">
@@ -28,7 +48,7 @@ const PublicNavbar = () => {
                   className="w-8 h-8 object-contain logo-hover"
                 />
               </div>
-              <span className="text-2xl font-bold text-gray-900 group-hover:text-accent transition-colors">mosKITA</span>
+              <span className="text-2xl font-bold text-navy dark:text-light group-hover:text-green transition-colors">mosKITA</span>
             </Link>
           </div>
 
@@ -76,15 +96,42 @@ const PublicNavbar = () => {
             </div>
 
             <Link
+              to="/barangays"
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                isActive('/barangays')
+                  ? 'bg-navy text-white shadow-md'
+                  : 'text-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              Barangays
+            </Link>
+            <Link
+              to="/report"
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                isActive('/report')
+                  ? 'bg-accent-orange text-white shadow-md'
+                  : 'text-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              Report Case
+            </Link>
+            <Link
               to="/information"
               className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
                 isActive('/information')
-                  ? 'bg-primary text-white shadow-md'
+                  ? 'bg-navy text-white shadow-md'
                   : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
               Information
             </Link>
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-700"
+              aria-label="Toggle dark mode"
+            >
+              {darkMode ? '☀️' : '🌙'}
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -142,12 +189,32 @@ const PublicNavbar = () => {
               </Link>
             ))}
             <Link
+              to="/barangays"
+              className="block px-4 py-3 rounded-lg text-base font-medium hover:bg-gray-50 transition-colors text-gray-700"
+              onClick={() => setIsOpen(false)}
+            >
+              Barangays
+            </Link>
+            <Link
+              to="/report"
+              className="block px-4 py-3 rounded-lg text-base font-medium hover:bg-gray-50 transition-colors text-gray-700"
+              onClick={() => setIsOpen(false)}
+            >
+              Report Case
+            </Link>
+            <Link
               to="/information"
               className="block px-4 py-3 rounded-lg text-base font-medium hover:bg-gray-50 transition-colors text-gray-700"
               onClick={() => setIsOpen(false)}
             >
               Information
             </Link>
+            <button
+              onClick={toggleDarkMode}
+              className="block w-full text-left px-4 py-3 rounded-lg text-base font-medium hover:bg-gray-50 transition-colors text-gray-700"
+            >
+              {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
+            </button>
           </div>
         </div>
       )}
