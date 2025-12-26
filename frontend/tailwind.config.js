@@ -49,9 +49,19 @@ export default {
           orange: '#F97316',
           yellow: '#FFB703',
         },
-        // Legacy support
+        // Legacy support - map primary to navy for compatibility
         primary: {
           DEFAULT: '#1E3A8A',
+          50: '#e8edf5',
+          100: '#c4d2e6',
+          200: '#9fb7d7',
+          300: '#7a9cc8',
+          400: '#5581b9',
+          500: '#1E3A8A',
+          600: '#182e6e',
+          700: '#122252',
+          800: '#0c1636',
+          900: '#060a1a',
         },
         support: {
           lime: '#34A853',
