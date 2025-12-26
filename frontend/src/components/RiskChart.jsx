@@ -34,15 +34,8 @@ const RiskChart = ({ forecast, type = 'line' }) => {
     )
   }
 
-  const weeks = forecast.map((week, index) => `Week ${index + 1}`)
-  const risks = forecast.map(week => {
-    switch (week.risk) {
-      case 'High': return 3
-      case 'Moderate': return 2
-      case 'Low': return 1
-      default: return 0
-    }
-  })
+  // Use week labels from forecast data (dates)
+  const weeks = forecast.map(week => week.week || `Week ${forecast.indexOf(week) + 1}`)
   const probabilities = forecast.map(week => (week.probability * 100).toFixed(1))
 
   const riskColors = forecast.map(week => {
@@ -58,20 +51,13 @@ const RiskChart = ({ forecast, type = 'line' }) => {
     labels: weeks,
     datasets: [
       {
-        label: 'Risk Level (1=Low, 2=Moderate, 3=High)',
-        data: risks,
-        borderColor: '#ef4444',
-        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+        label: 'Dengue risk (%)',
+        data: probabilities,
+        borderColor: '#34A853', // Green color
+        backgroundColor: 'rgba(52, 168, 83, 0.1)',
         tension: 0.4,
         fill: true,
-      },
-      {
-        label: 'Probability (%)',
-        data: probabilities,
-        borderColor: '#3b82f6',
-        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-        yAxisID: 'y1',
-        tension: 0.4,
+        borderWidth: 2,
       },
     ],
   }
@@ -110,39 +96,29 @@ const RiskChart = ({ forecast, type = 'line' }) => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'top',
+        display: false, // Hide legend to match design
       },
       title: {
-        display: true,
-        text: 'Dengue Risk Forecast - 4 Weeks',
-        font: {
-          size: 16,
-          weight: 'bold',
-        },
+        display: false, // No title to match design
       },
     },
     scales: {
       y: {
         beginAtZero: true,
-        max: 3,
+        max: 75, // Match design: 0% to 75%
         ticks: {
-          stepSize: 1,
           callback: function(value) {
-            if (value === 1) return 'Low'
-            if (value === 2) return 'Moderate'
-            if (value === 3) return 'High'
-            return ''
+            return value + '%'
           },
         },
+        title: {
+          display: true,
+          text: 'Dengue risk (%)',
+        },
       },
-      y1: {
-        type: 'linear',
-        display: true,
-        position: 'right',
-        beginAtZero: true,
-        max: 100,
-        grid: {
-          drawOnChartArea: false,
+      x: {
+        title: {
+          display: false,
         },
       },
     },
