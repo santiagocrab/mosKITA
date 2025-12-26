@@ -7,6 +7,8 @@ export default defineConfig(({ mode }) => ({
     react({
       // Enable Fast Refresh
       fastRefresh: true,
+      // Use new JSX transform (automatic)
+      jsxRuntime: 'automatic',
       // Exclude test files from processing
       exclude: /\.test\.(js|jsx|ts|tsx)$/,
     }),
