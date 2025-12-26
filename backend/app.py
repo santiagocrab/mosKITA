@@ -44,22 +44,25 @@ app = FastAPI(
 )
 
 # CORS middleware
-# Allow all origins in production (you can restrict this to specific domains)
+# Get frontend URL from environment variable or use defaults
+FRONTEND_URL = os.getenv("FRONTEND_URL", "")
 allowed_origins = [
     "http://localhost:3000",
     "http://localhost:3001",
     "http://localhost:3002",
     "http://localhost:3003",
-    # Add your production frontend URLs here
-    # "https://denguess.vercel.app",
-    # "https://denguess.netlify.app",
 ]
 
-# In production, you might want to allow all origins or specific ones
-# For now, we'll allow all for easier deployment
+# Add production frontend URL if provided
+if FRONTEND_URL:
+    allowed_origins.append(FRONTEND_URL)
+
+# In production, use environment variable or allow all for easier deployment
+cors_origins = os.getenv("CORS_ORIGINS", "*").split(",") if os.getenv("CORS_ORIGINS") else ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Change to allowed_origins list for production security
+    allow_origins=cors_origins if cors_origins != ["*"] else ["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
