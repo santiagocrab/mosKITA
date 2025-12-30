@@ -34,13 +34,13 @@ const BARANGAY_NAMES = [
 const getRiskColor = (risk) => {
   switch (risk) {
     case 'High':
-      return '#ef4444' // red-500
+      return '#D64545' // Muted Red (danger)
     case 'Moderate':
-      return '#f59e0b' // amber-500
+      return '#F4B740' // Warm Amber (accent)
     case 'Low':
-      return '#10b981' // emerald-500
+      return '#10B981' // Green
     default:
-      return '#6b7280' // gray-500
+      return '#9CA3AF' // Gray
   }
 }
 

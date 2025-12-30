@@ -11,65 +11,73 @@ export default {
         heading: ['Poppins', 'Satoshi', 'system-ui', 'sans-serif'],
       },
       colors: {
-        // New Brand Colors
+        // Design System Colors (Strict)
+        primary: {
+          DEFAULT: '#1F5E63', // Deep Teal / Forest Green
+          50: '#E8F0F1',
+          100: '#C4D9DC',
+          200: '#9FC2C7',
+          300: '#7AABB2',
+          400: '#55949D',
+          500: '#1F5E63',
+          600: '#194B4F',
+          700: '#13383B',
+          800: '#0D2527',
+          900: '#071213',
+        },
+        secondary: {
+          DEFAULT: '#EAF4F8', // Soft Sky Blue
+          50: '#F5FAFC',
+          100: '#EAF4F8',
+          200: '#D5E9F1',
+          300: '#C0DEEA',
+          400: '#ABD3E3',
+        },
+        accent: {
+          DEFAULT: '#F4B740', // Warm Amber / Warning Yellow
+          yellow: '#F4B740',
+          amber: '#F4B740',
+        },
+        danger: {
+          DEFAULT: '#D64545', // Muted Red
+          50: '#F9E8E8',
+          100: '#F3D1D1',
+          200: '#EDBABA',
+          300: '#E7A3A3',
+          400: '#E18C8C',
+          500: '#D64545',
+          600: '#AB3737',
+          700: '#802929',
+          800: '#551B1B',
+          900: '#2A0D0D',
+        },
+        background: {
+          DEFAULT: '#F7FAFC', // Off-white / foggy gradient
+        },
+        text: {
+          DEFAULT: '#1F2937', // Charcoal
+        },
+        // Legacy support
         green: {
-          DEFAULT: '#34A853',
-          50: '#e8f5eb',
-          100: '#c4e4cd',
-          200: '#9dd3ab',
-          300: '#76c289',
-          400: '#4fb167',
-          500: '#34A853',
-          600: '#2a8642',
-          700: '#206432',
-          800: '#164221',
-          900: '#0c2011',
+          DEFAULT: '#10B981',
+          500: '#10B981',
         },
         navy: {
           DEFAULT: '#1E3A8A',
-          50: '#e8edf5',
-          100: '#c4d2e6',
-          200: '#9fb7d7',
-          300: '#7a9cc8',
-          400: '#5581b9',
-          500: '#1E3A8A',
-          600: '#182e6e',
-          700: '#122252',
-          800: '#0c1636',
-          900: '#060a1a',
         },
         light: {
-          DEFAULT: '#F8FAFC',
+          DEFAULT: '#F7FAFC',
         },
         dark: {
           DEFAULT: '#1F2937',
         },
-        accent: {
-          DEFAULT: '#F97316',
-          orange: '#F97316',
-          yellow: '#FFB703',
-        },
-        // Legacy support - map primary to navy for compatibility
-        primary: {
-          DEFAULT: '#1E3A8A',
-          50: '#e8edf5',
-          100: '#c4d2e6',
-          200: '#9fb7d7',
-          300: '#7a9cc8',
-          400: '#5581b9',
-          500: '#1E3A8A',
-          600: '#182e6e',
-          700: '#122252',
-          800: '#0c1636',
-          900: '#060a1a',
-        },
         support: {
-          lime: '#34A853',
-          gray: '#F8FAFC',
+          lime: '#10B981',
+          gray: '#F7FAFC',
         },
-        'risk-low': '#34A853',
-        'risk-moderate': '#FFB703',
-        'risk-high': '#F97316',
+        'risk-low': '#10B981',
+        'risk-moderate': '#F4B740',
+        'risk-high': '#D64545',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

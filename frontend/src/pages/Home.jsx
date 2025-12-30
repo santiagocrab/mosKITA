@@ -8,13 +8,14 @@ const Home = () => {
   const [selectedBarangay, setSelectedBarangay] = useState('Bagumbayan Norte')
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0])
   const [forecast, setForecast] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [lastUpdated, setLastUpdated] = useState(new Date())
 
   const barangays = ['Bagumbayan Norte', 'Concepcion Grande', 'Tinago', 'Balatas']
 
-  // Use fallback data immediately, then load real data in background
+  // Initialize with fallback data immediately for fast render
   useEffect(() => {
-    // Set fallback data immediately for fast initial render
     const startDate = new Date(selectedDate)
     const fallbackData = []
     for (let i = 0; i < 7; i++) {
@@ -27,16 +28,17 @@ const Home = () => {
       })
     }
     setForecast(fallbackData)
-    setLoading(false)
-
+    
     // Load real data in background (non-blocking)
     loadForecast()
+    
+    // Update last updated time
+    setLastUpdated(new Date())
   }, [selectedBarangay, selectedDate])
 
   const loadForecast = async () => {
     try {
       const data = await getWeeklyPredictions(selectedBarangay, selectedDate)
-      // Transform data to match chart format
       const weeklyData = []
       const startDate = new Date(selectedDate)
       for (let i = 0; i < 7; i++) {
@@ -53,192 +55,312 @@ const Home = () => {
       setForecast(weeklyData)
     } catch (error) {
       console.error('Error loading forecast:', error)
-      // Keep fallback data on error
     }
   }
 
   return (
-    <div className="min-h-screen pt-20 bg-light">
-      {/* Header Section with Background */}
-      <section className="relative overflow-hidden">
+    <div className="min-h-screen pt-20 bg-background">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-secondary-100 via-background to-background py-16 md:py-24">
         {/* Background Image - User will upload */}
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30"
+          className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{ backgroundImage: 'url(/background.jpg)' }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-white"></div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Sky gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary-50/50 via-transparent to-background"></div>
+        
+        {/* Floating mosquitoes at low opacity */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute text-2xl opacity-5"
+              style={{
+                left: `${15 + i * 12}%`,
+                top: `${20 + (i % 3) * 25}%`,
+              }}
+              animate={{
+                y: [0, -15, 0],
+                x: [0, 5, 0],
+              }}
+              transition={{
+                duration: 4 + i * 0.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.3,
+              }}
+            >
+              🦟
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Logo and Title */}
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <img 
-              src="/logo.png" 
-              alt="mosKITA Logo" 
-              className="w-16 h-16 md:w-20 md:h-20 object-contain"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex items-center justify-center gap-4 mb-6"
+          >
+            <motion.img
+              src="/logo.png"
+              alt="mosKITA Logo"
+              className="w-20 h-20 md:w-24 md:h-24 object-contain"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             />
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-navy">
+            <motion.h1
+              className="text-5xl md:text-6xl font-heading font-bold text-primary"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               mosKITA
-            </h1>
-          </div>
+            </motion.h1>
+          </motion.div>
 
           {/* Tagline */}
-          <p className="text-xl md:text-2xl font-heading font-semibold text-center text-navy mb-2">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-xl md:text-2xl font-heading font-semibold italic text-center text-primary mb-3"
+          >
             🦟 Outsmart the Bite Before It Strikes
-          </p>
+          </motion.p>
 
-          {/* Description */}
-          <p className="text-base md:text-lg text-center text-gray-600 mb-8">
-            Forecasting danger, one barangay at a time. Real-time climate intelligence, localized for Naga City.
-          </p>
+          {/* Supporting Copy */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-center space-y-1 mb-10"
+          >
+            <p className="text-base md:text-lg text-text/80 font-medium">
+              Forecasting danger, one barangay at a time.
+            </p>
+            <p className="text-base md:text-lg text-text/70 font-normal">
+              Real-time climate intelligence, localized for Naga City.
+            </p>
+          </motion.div>
 
-          {/* Search and Filter Bar */}
-          <div className="flex flex-col sm:flex-row gap-3 items-center justify-center mb-8">
-            {/* Search Input */}
-            <div className="relative flex-1 max-w-md">
-              <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl">🔍</span>
-              <input
-                type="text"
-                placeholder="Search for barangay..."
-                className="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 text-lg"
-              />
+          {/* Smart Search Bar - Floating Glass Container */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-secondary-200/50 flex flex-col sm:flex-row gap-3 items-center">
+              {/* Search Input */}
+              <div className="relative flex-1 w-full">
+                <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-text/40 text-lg">🔍</span>
+                <input
+                  type="text"
+                  placeholder="Search for barangay..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3 border-2 border-secondary-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 text-text bg-white/50 transition-all"
+                />
+              </div>
+
+              {/* Date Filter */}
+              <button className="px-5 py-3 border-2 border-secondary-200 rounded-xl hover:border-primary hover:bg-primary/5 flex items-center gap-2 text-text font-medium transition-all whitespace-nowrap">
+                Today
+                <span className="text-text/40">▼</span>
+              </button>
+
+              {/* Filter Button */}
+              <button className="px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-600 flex items-center gap-2 transition-all shadow-md hover:shadow-lg transform hover:scale-[1.02]">
+                <span>🔄</span>
+                Filter
+              </button>
+
+              {/* Settings Icon */}
+              <button className="p-3 border-2 border-secondary-200 rounded-xl hover:border-primary hover:bg-primary/5 text-text transition-all">
+                ⚙️
+              </button>
             </div>
-
-            {/* Date Filter */}
-            <button className="px-4 py-3 border-2 border-gray-300 rounded-lg hover:border-green-500 flex items-center gap-2 text-gray-700 font-medium">
-              Today
-              <span className="text-gray-400">▼</span>
-            </button>
-
-            {/* Filter Button */}
-            <button className="px-6 py-3 bg-green text-white rounded-lg font-semibold hover:bg-green-600 flex items-center gap-2">
-              <span>🔄</span>
-              Filter
-            </button>
-
-            {/* Settings Icon */}
-            <button className="p-3 border-2 border-gray-300 rounded-lg hover:border-green-500 text-gray-700">
-              ⚙️
-            </button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Real-time Insights Section */}
-      <section className="bg-white py-8">
+      <section className="bg-background py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-heading font-bold text-navy mb-6 flex items-center gap-2">
-            🗺️ Real-time insights that help communities prepare, respond, and stay safe.
-          </h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-3xl font-heading font-bold text-text mb-8 flex items-center gap-3"
+          >
+            <span className="text-3xl">📍</span>
+            Real-time insights that help communities prepare, respond, and stay safe.
+          </motion.h2>
 
-          {/* Map Container */}
-          <div className="bg-white rounded-xl border-2 border-gray-200 p-6 mb-4">
+          {/* Interactive Heatmap Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-white rounded-2xl border-2 border-secondary-200 p-6 mb-6 shadow-lg"
+          >
             <BarangayHeatmap />
+          </motion.div>
+
+          {/* Risk Legend - Clean Pill Style */}
+          <div className="flex items-center gap-6 mb-4 flex-wrap">
+            <div className="flex items-center gap-2">
+              <div className="w-5 h-5 bg-green-500 rounded-full border-2 border-white shadow-sm"></div>
+              <span className="text-sm text-text font-medium">Low Risk</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-5 h-5 bg-accent rounded-full border-2 border-white shadow-sm"></div>
+              <span className="text-sm text-text font-medium">Moderate</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-5 h-5 bg-orange-500 rounded-full border-2 border-white shadow-sm"></div>
+              <span className="text-sm text-text font-medium">Elevated</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-5 h-5 bg-danger rounded-full border-2 border-white shadow-sm"></div>
+              <span className="text-sm text-text font-medium">High Risk</span>
+            </div>
           </div>
 
-          {/* Risk Legend */}
-          <div className="flex items-center gap-4 mb-4 flex-wrap">
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-red-500 rounded"></div>
-              <span className="text-sm text-gray-700">High Risk</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-orange-500 rounded"></div>
-              <span className="text-sm text-gray-700">Moderate-High</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-yellow-500 rounded"></div>
-              <span className="text-sm text-gray-700">Moderate</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-green-500 rounded"></div>
-              <span className="text-sm text-gray-700">Low Risk</span>
-            </div>
+          {/* Last Updated Indicator */}
+          <div className="flex items-center gap-2 text-sm text-text/60">
+            <motion.span
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="text-accent"
+            >
+              🔄
+            </motion.span>
+            <span>Last updated: a few minutes ago</span>
           </div>
-
-          {/* Last Updated */}
-          <p className="text-sm text-gray-600">Last updated: a few minutes ago</p>
         </div>
       </section>
 
       {/* Barangay Dengue Trends Section */}
-      <section className="bg-white py-8 border-t border-gray-200">
+      <section className="bg-background py-12 border-t border-secondary-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-heading font-bold text-navy mb-6 flex items-center gap-2">
-            📊 Barangay Dengue Trends
-          </h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-3xl font-heading font-bold text-text mb-8 flex items-center gap-3"
+          >
+            <span className="text-3xl">📊</span>
+            Barangay Dengue Trends
+          </motion.h2>
 
           {/* Barangay Tabs */}
-          <div className="flex gap-2 mb-6 overflow-x-auto">
+          <div className="flex gap-3 mb-8 overflow-x-auto pb-2">
             {barangays.map((barangay) => (
-              <button
+              <motion.button
                 key={barangay}
                 onClick={() => setSelectedBarangay(barangay)}
-                className={`px-6 py-3 rounded-lg font-semibold whitespace-nowrap transition-all ${
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`px-6 py-3 rounded-xl font-semibold whitespace-nowrap transition-all ${
                   selectedBarangay === barangay
-                    ? 'bg-navy text-white shadow-md'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-primary text-white shadow-md'
+                    : 'bg-white text-text border-2 border-secondary-200 hover:border-primary hover:bg-primary/5'
                 }`}
               >
                 {barangay}
-              </button>
+              </motion.button>
             ))}
           </div>
 
-          {/* Chart */}
-          <div className="bg-white rounded-xl border-2 border-gray-200 p-6 mb-4">
+          {/* Chart Card */}
+          <motion.div
+            key={selectedBarangay}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            className="bg-white rounded-2xl border-2 border-secondary-200 p-6 mb-4 shadow-lg"
+          >
             {loading ? (
-              <div className="h-64 flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-4 border-green-500 border-t-transparent"></div>
+              <div className="h-80 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent"></div>
               </div>
             ) : (
               <RiskChart forecast={forecast} type="line" />
             )}
-          </div>
+          </motion.div>
 
           {/* Graph Description */}
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-text/70 font-normal">
             7-Day Forecast showing estimated dengue risk probability. Use these insights to plan and protect your community.
           </p>
         </div>
       </section>
 
-      {/* Summary Cards */}
-      <section className="bg-gray-50 py-8">
+      {/* Summary KPI Cards */}
+      <section className="bg-background py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Barangay Monitored Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl p-6 shadow-lg border-2 border-gray-200 text-center"
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.02, y: -2 }}
+              className="bg-white rounded-2xl p-8 shadow-lg border-2 border-secondary-200 text-center transition-all"
             >
-              <div className="text-4xl mb-3">🏘️</div>
-              <div className="text-4xl font-bold text-navy mb-2">5</div>
-              <div className="text-sm text-gray-600 font-medium">Barangay Monitored</div>
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="text-5xl mb-4"
+              >
+                🏘️
+              </motion.div>
+              <div className="text-5xl font-bold text-primary mb-2">5</div>
+              <div className="text-sm text-text/70 font-medium">Barangay Monitored</div>
             </motion.div>
 
             {/* Active Weather Alerts Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="bg-white rounded-xl p-6 shadow-lg border-2 border-red-200 text-center"
+              whileHover={{ scale: 1.02, y: -2 }}
+              className="bg-white rounded-2xl p-8 shadow-lg border-2 border-danger/30 text-center transition-all"
             >
-              <div className="text-4xl mb-3">⚠️</div>
-              <div className="text-4xl font-bold text-red-600 mb-2">2</div>
-              <div className="text-sm text-gray-600 font-medium">Active Weather Alerts</div>
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: -5 }}
+                className="text-5xl mb-4"
+              >
+                ⚠️
+              </motion.div>
+              <div className="text-5xl font-bold text-danger mb-2">2</div>
+              <div className="text-sm text-text/70 font-medium">Active Weather Alerts</div>
             </motion.div>
 
             {/* Recent Forecasts Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-white rounded-xl p-6 shadow-lg border-2 border-yellow-200 text-center"
+              whileHover={{ scale: 1.02, y: -2 }}
+              className="bg-white rounded-2xl p-8 shadow-lg border-2 border-accent/30 text-center transition-all"
             >
-              <div className="text-4xl mb-3">📅</div>
-              <div className="text-4xl font-bold text-yellow-600 mb-2">5</div>
-              <div className="text-sm text-gray-600 font-medium">Recent Forecasts</div>
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="text-5xl mb-4"
+              >
+                📈
+              </motion.div>
+              <div className="text-5xl font-bold text-accent mb-2">5</div>
+              <div className="text-sm text-text/70 font-medium">Recent Forecasts</div>
             </motion.div>
           </div>
         </div>

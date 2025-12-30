@@ -53,11 +53,16 @@ const RiskChart = ({ forecast, type = 'line' }) => {
       {
         label: 'Dengue risk (%)',
         data: probabilities,
-        borderColor: '#34A853', // Green color
-        backgroundColor: 'rgba(52, 168, 83, 0.1)',
+        borderColor: '#1F5E63', // Primary Deep Teal
+        backgroundColor: 'rgba(31, 94, 99, 0.1)', // Primary with opacity
         tension: 0.4,
         fill: true,
         borderWidth: 2,
+        pointBackgroundColor: '#1F5E63',
+        pointBorderColor: '#ffffff',
+        pointBorderWidth: 2,
+        pointRadius: 4,
+        pointHoverRadius: 6,
       },
     ],
   }
