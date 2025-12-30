@@ -14,6 +14,35 @@ const Home = () => {
 
   const barangays = ['Bagumbayan Norte', 'Concepcion Grande', 'Tinago', 'Balatas']
 
+  const loadForecast = async () => {
+    try {
+      setLoading(true)
+      const data = await getWeeklyPredictions(selectedBarangay, selectedDate).catch(err => {
+        console.warn('Forecast API error, using fallback:', err)
+        return { weekly_predictions: {} }
+      })
+      const weeklyData = []
+      const startDate = new Date(selectedDate)
+      for (let i = 0; i < 7; i++) {
+        const date = new Date(startDate)
+        date.setDate(date.getDate() + i)
+        const dateKey = date.toISOString().split('T')[0]
+        const risk = data.weekly_predictions?.[dateKey] || 'Low'
+        weeklyData.push({
+          week: date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }),
+          risk: risk,
+          probability: risk === 'High' ? 0.65 : risk === 'Moderate' ? 0.45 : 0.15
+        })
+      }
+      setForecast(weeklyData)
+    } catch (error) {
+      console.error('Error loading forecast:', error)
+      // Keep fallback data on error
+    } finally {
+      setLoading(false)
+    }
+  }
+
   // Initialize with fallback data immediately for fast render
   useEffect(() => {
     const startDate = new Date(selectedDate)
@@ -34,38 +63,20 @@ const Home = () => {
     
     // Update last updated time
     setLastUpdated(new Date())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedBarangay, selectedDate])
 
-  const loadForecast = async () => {
-    try {
-      const data = await getWeeklyPredictions(selectedBarangay, selectedDate)
-      const weeklyData = []
-      const startDate = new Date(selectedDate)
-      for (let i = 0; i < 7; i++) {
-        const date = new Date(startDate)
-        date.setDate(date.getDate() + i)
-        const dateKey = date.toISOString().split('T')[0]
-        const risk = data.weekly_predictions?.[dateKey] || 'Low'
-        weeklyData.push({
-          week: date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }),
-          risk: risk,
-          probability: risk === 'High' ? 0.65 : risk === 'Moderate' ? 0.45 : 0.15
-        })
-      }
-      setForecast(weeklyData)
-    } catch (error) {
-      console.error('Error loading forecast:', error)
-    }
-  }
+  // Safety check - ensure forecast is always an array
+  const safeForecast = Array.isArray(forecast) && forecast.length > 0 ? forecast : []
 
   return (
     <div className="min-h-screen pt-20 bg-background">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-secondary-100 via-background to-background py-16 md:py-24">
-        {/* Background Image - User will upload */}
+        {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: 'url(/background.jpg)' }}
+          style={{ backgroundImage: 'url(/bg.png)' }}
         ></div>
         
         {/* Sky gradient overlay */}
@@ -291,9 +302,9 @@ const Home = () => {
               <div className="h-80 flex items-center justify-center">
                 <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent"></div>
               </div>
-            ) : (
-              <RiskChart forecast={forecast} type="line" />
-            )}
+                    ) : (
+                      <RiskChart forecast={safeForecast} type="line" />
+                    )}
           </motion.div>
 
           {/* Graph Description */}
