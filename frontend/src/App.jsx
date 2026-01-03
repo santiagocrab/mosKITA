@@ -15,21 +15,11 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 import Chatbot from './components/Chatbot'
 
 function App() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false) // Always skip loading in dev
 
   useEffect(() => {
-    // Skip loading screen in development for faster startup
-    // Only show in production for polished experience
-    if (import.meta.env.DEV) {
-      setLoading(false)
-    } else {
-      // Minimal loading time for smooth transition in production
-      const timer = setTimeout(() => {
-        setLoading(false)
-      }, 200) // Reduced to 0.2 seconds for faster load
-
-      return () => clearTimeout(timer)
-    }
+    // Skip loading screen completely for faster startup
+    setLoading(false)
   }, [])
 
   if (loading) {
@@ -57,7 +47,7 @@ function App() {
           <Route
             path="/"
             element={
-              <div className="min-h-screen bg-gray-50">
+              <div className="min-h-screen bg-background">
                 <PublicNavbar />
                 <Home />
               </div>

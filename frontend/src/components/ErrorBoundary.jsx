@@ -17,10 +17,10 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-black flex items-center justify-center p-4">
-          <div className="glass rounded-2xl shadow-2xl p-8 max-w-2xl border border-red-900/50">
-            <h1 className="text-2xl font-black text-red-500 mb-4">Something went wrong</h1>
-            <p className="text-red-300 mb-4">
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl border border-red-200">
+            <h1 className="text-2xl font-black text-red-600 mb-4">⚠️ Something went wrong</h1>
+            <p className="text-gray-700 mb-4">
               {this.state.error?.message || 'An unexpected error occurred'}
             </p>
             <button
@@ -30,8 +30,8 @@ class ErrorBoundary extends React.Component {
               Reload Page
             </button>
             <details className="mt-4">
-              <summary className="cursor-pointer text-sm text-red-400">Error Details</summary>
-              <pre className="mt-2 text-xs bg-black/50 p-4 rounded overflow-auto text-red-300 border border-red-900/30">
+              <summary className="cursor-pointer text-sm text-gray-600">Error Details</summary>
+              <pre className="mt-2 text-xs bg-gray-100 p-4 rounded overflow-auto text-gray-800 border border-gray-300">
                 {this.state.error?.stack}
               </pre>
             </details>
