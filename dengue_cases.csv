@@ -1,0 +1,361 @@
+date,barangay,cases
+2020-01-01,Bagumbayan Norte,0
+2020-01-01,Concepcion Grande,1
+2020-01-01,Tinago,2
+2020-01-01,Balatas,1
+2020-01-01,San Felipe,0
+2020-02-01,Bagumbayan Norte,0
+2020-02-01,Concepcion Grande,1
+2020-02-01,Tinago,1
+2020-02-01,Balatas,1
+2020-02-01,San Felipe,1
+2020-03-01,Bagumbayan Norte,1
+2020-03-01,Concepcion Grande,1
+2020-03-01,Tinago,2
+2020-03-01,Balatas,1
+2020-03-01,San Felipe,3
+2020-04-01,Bagumbayan Norte,1
+2020-04-01,Concepcion Grande,4
+2020-04-01,Tinago,1
+2020-04-01,Balatas,1
+2020-04-01,San Felipe,0
+2020-05-01,Bagumbayan Norte,0
+2020-05-01,Concepcion Grande,2
+2020-05-01,Tinago,1
+2020-05-01,Balatas,1
+2020-05-01,San Felipe,1
+2020-06-01,Bagumbayan Norte,3
+2020-06-01,Concepcion Grande,5
+2020-06-01,Tinago,1
+2020-06-01,Balatas,5
+2020-06-01,San Felipe,4
+2020-07-01,Bagumbayan Norte,3
+2020-07-01,Concepcion Grande,2
+2020-07-01,Tinago,3
+2020-07-01,Balatas,1
+2020-07-01,San Felipe,4
+2020-08-01,Bagumbayan Norte,2
+2020-08-01,Concepcion Grande,7
+2020-08-01,Tinago,4
+2020-08-01,Balatas,2
+2020-08-01,San Felipe,3
+2020-09-01,Bagumbayan Norte,4
+2020-09-01,Concepcion Grande,4
+2020-09-01,Tinago,1
+2020-09-01,Balatas,4
+2020-09-01,San Felipe,4
+2020-10-01,Bagumbayan Norte,4
+2020-10-01,Concepcion Grande,1
+2020-10-01,Tinago,1
+2020-10-01,Balatas,2
+2020-10-01,San Felipe,0
+2020-11-01,Bagumbayan Norte,1
+2020-11-01,Concepcion Grande,1
+2020-11-01,Tinago,2
+2020-11-01,Balatas,0
+2020-11-01,San Felipe,0
+2020-12-01,Bagumbayan Norte,1
+2020-12-01,Concepcion Grande,1
+2020-12-01,Tinago,3
+2020-12-01,Balatas,1
+2020-12-01,San Felipe,1
+2021-01-01,Bagumbayan Norte,0
+2021-01-01,Concepcion Grande,2
+2021-01-01,Tinago,1
+2021-01-01,Balatas,0
+2021-01-01,San Felipe,2
+2021-02-01,Bagumbayan Norte,2
+2021-02-01,Concepcion Grande,3
+2021-02-01,Tinago,1
+2021-02-01,Balatas,2
+2021-02-01,San Felipe,0
+2021-03-01,Bagumbayan Norte,0
+2021-03-01,Concepcion Grande,3
+2021-03-01,Tinago,2
+2021-03-01,Balatas,0
+2021-03-01,San Felipe,2
+2021-04-01,Bagumbayan Norte,2
+2021-04-01,Concepcion Grande,1
+2021-04-01,Tinago,2
+2021-04-01,Balatas,1
+2021-04-01,San Felipe,2
+2021-05-01,Bagumbayan Norte,1
+2021-05-01,Concepcion Grande,0
+2021-05-01,Tinago,3
+2021-05-01,Balatas,4
+2021-05-01,San Felipe,1
+2021-06-01,Bagumbayan Norte,4
+2021-06-01,Concepcion Grande,1
+2021-06-01,Tinago,4
+2021-06-01,Balatas,1
+2021-06-01,San Felipe,6
+2021-07-01,Bagumbayan Norte,3
+2021-07-01,Concepcion Grande,3
+2021-07-01,Tinago,1
+2021-07-01,Balatas,0
+2021-07-01,San Felipe,6
+2021-08-01,Bagumbayan Norte,2
+2021-08-01,Concepcion Grande,3
+2021-08-01,Tinago,4
+2021-08-01,Balatas,3
+2021-08-01,San Felipe,4
+2021-09-01,Bagumbayan Norte,3
+2021-09-01,Concepcion Grande,4
+2021-09-01,Tinago,2
+2021-09-01,Balatas,3
+2021-09-01,San Felipe,4
+2021-10-01,Bagumbayan Norte,1
+2021-10-01,Concepcion Grande,1
+2021-10-01,Tinago,3
+2021-10-01,Balatas,6
+2021-10-01,San Felipe,2
+2021-11-01,Bagumbayan Norte,0
+2021-11-01,Concepcion Grande,0
+2021-11-01,Tinago,0
+2021-11-01,Balatas,0
+2021-11-01,San Felipe,3
+2021-12-01,Bagumbayan Norte,1
+2021-12-01,Concepcion Grande,0
+2021-12-01,Tinago,3
+2021-12-01,Balatas,1
+2021-12-01,San Felipe,1
+2022-01-01,Bagumbayan Norte,1
+2022-01-01,Concepcion Grande,0
+2022-01-01,Tinago,2
+2022-01-01,Balatas,2
+2022-01-01,San Felipe,1
+2022-02-01,Bagumbayan Norte,1
+2022-02-01,Concepcion Grande,0
+2022-02-01,Tinago,1
+2022-02-01,Balatas,0
+2022-02-01,San Felipe,3
+2022-03-01,Bagumbayan Norte,1
+2022-03-01,Concepcion Grande,0
+2022-03-01,Tinago,2
+2022-03-01,Balatas,1
+2022-03-01,San Felipe,1
+2022-04-01,Bagumbayan Norte,0
+2022-04-01,Concepcion Grande,1
+2022-04-01,Tinago,0
+2022-04-01,Balatas,3
+2022-04-01,San Felipe,1
+2022-05-01,Bagumbayan Norte,1
+2022-05-01,Concepcion Grande,2
+2022-05-01,Tinago,1
+2022-05-01,Balatas,2
+2022-05-01,San Felipe,0
+2022-06-01,Bagumbayan Norte,2
+2022-06-01,Concepcion Grande,3
+2022-06-01,Tinago,0
+2022-06-01,Balatas,3
+2022-06-01,San Felipe,4
+2022-07-01,Bagumbayan Norte,3
+2022-07-01,Concepcion Grande,4
+2022-07-01,Tinago,4
+2022-07-01,Balatas,3
+2022-07-01,San Felipe,1
+2022-08-01,Bagumbayan Norte,2
+2022-08-01,Concepcion Grande,2
+2022-08-01,Tinago,4
+2022-08-01,Balatas,3
+2022-08-01,San Felipe,0
+2022-09-01,Bagumbayan Norte,0
+2022-09-01,Concepcion Grande,2
+2022-09-01,Tinago,2
+2022-09-01,Balatas,5
+2022-09-01,San Felipe,2
+2022-10-01,Bagumbayan Norte,4
+2022-10-01,Concepcion Grande,3
+2022-10-01,Tinago,3
+2022-10-01,Balatas,3
+2022-10-01,San Felipe,3
+2022-11-01,Bagumbayan Norte,0
+2022-11-01,Concepcion Grande,0
+2022-11-01,Tinago,1
+2022-11-01,Balatas,0
+2022-11-01,San Felipe,0
+2022-12-01,Bagumbayan Norte,0
+2022-12-01,Concepcion Grande,1
+2022-12-01,Tinago,1
+2022-12-01,Balatas,0
+2022-12-01,San Felipe,2
+2023-01-01,Bagumbayan Norte,2
+2023-01-01,Concepcion Grande,0
+2023-01-01,Tinago,1
+2023-01-01,Balatas,2
+2023-01-01,San Felipe,0
+2023-02-01,Bagumbayan Norte,1
+2023-02-01,Concepcion Grande,0
+2023-02-01,Tinago,1
+2023-02-01,Balatas,1
+2023-02-01,San Felipe,4
+2023-03-01,Bagumbayan Norte,2
+2023-03-01,Concepcion Grande,1
+2023-03-01,Tinago,0
+2023-03-01,Balatas,1
+2023-03-01,San Felipe,1
+2023-04-01,Bagumbayan Norte,7
+2023-04-01,Concepcion Grande,1
+2023-04-01,Tinago,1
+2023-04-01,Balatas,2
+2023-04-01,San Felipe,3
+2023-05-01,Bagumbayan Norte,1
+2023-05-01,Concepcion Grande,0
+2023-05-01,Tinago,3
+2023-05-01,Balatas,1
+2023-05-01,San Felipe,2
+2023-06-01,Bagumbayan Norte,1
+2023-06-01,Concepcion Grande,4
+2023-06-01,Tinago,5
+2023-06-01,Balatas,1
+2023-06-01,San Felipe,4
+2023-07-01,Bagumbayan Norte,2
+2023-07-01,Concepcion Grande,2
+2023-07-01,Tinago,4
+2023-07-01,Balatas,2
+2023-07-01,San Felipe,3
+2023-08-01,Bagumbayan Norte,4
+2023-08-01,Concepcion Grande,5
+2023-08-01,Tinago,0
+2023-08-01,Balatas,6
+2023-08-01,San Felipe,5
+2023-09-01,Bagumbayan Norte,9
+2023-09-01,Concepcion Grande,2
+2023-09-01,Tinago,4
+2023-09-01,Balatas,4
+2023-09-01,San Felipe,3
+2023-10-01,Bagumbayan Norte,3
+2023-10-01,Concepcion Grande,3
+2023-10-01,Tinago,3
+2023-10-01,Balatas,3
+2023-10-01,San Felipe,1
+2023-11-01,Bagumbayan Norte,0
+2023-11-01,Concepcion Grande,1
+2023-11-01,Tinago,1
+2023-11-01,Balatas,1
+2023-11-01,San Felipe,1
+2023-12-01,Bagumbayan Norte,0
+2023-12-01,Concepcion Grande,0
+2023-12-01,Tinago,0
+2023-12-01,Balatas,1
+2023-12-01,San Felipe,0
+2024-01-01,Bagumbayan Norte,0
+2024-01-01,Concepcion Grande,1
+2024-01-01,Tinago,1
+2024-01-01,Balatas,0
+2024-01-01,San Felipe,0
+2024-02-01,Bagumbayan Norte,1
+2024-02-01,Concepcion Grande,1
+2024-02-01,Tinago,1
+2024-02-01,Balatas,1
+2024-02-01,San Felipe,2
+2024-03-01,Bagumbayan Norte,0
+2024-03-01,Concepcion Grande,1
+2024-03-01,Tinago,2
+2024-03-01,Balatas,2
+2024-03-01,San Felipe,5
+2024-04-01,Bagumbayan Norte,3
+2024-04-01,Concepcion Grande,5
+2024-04-01,Tinago,3
+2024-04-01,Balatas,1
+2024-04-01,San Felipe,3
+2024-05-01,Bagumbayan Norte,1
+2024-05-01,Concepcion Grande,1
+2024-05-01,Tinago,1
+2024-05-01,Balatas,0
+2024-05-01,San Felipe,0
+2024-06-01,Bagumbayan Norte,7
+2024-06-01,Concepcion Grande,4
+2024-06-01,Tinago,3
+2024-06-01,Balatas,1
+2024-06-01,San Felipe,4
+2024-07-01,Bagumbayan Norte,6
+2024-07-01,Concepcion Grande,5
+2024-07-01,Tinago,4
+2024-07-01,Balatas,2
+2024-07-01,San Felipe,2
+2024-08-01,Bagumbayan Norte,4
+2024-08-01,Concepcion Grande,6
+2024-08-01,Tinago,1
+2024-08-01,Balatas,4
+2024-08-01,San Felipe,5
+2024-09-01,Bagumbayan Norte,1
+2024-09-01,Concepcion Grande,3
+2024-09-01,Tinago,4
+2024-09-01,Balatas,2
+2024-09-01,San Felipe,4
+2024-10-01,Bagumbayan Norte,1
+2024-10-01,Concepcion Grande,2
+2024-10-01,Tinago,2
+2024-10-01,Balatas,4
+2024-10-01,San Felipe,4
+2024-11-01,Bagumbayan Norte,1
+2024-11-01,Concepcion Grande,1
+2024-11-01,Tinago,0
+2024-11-01,Balatas,1
+2024-11-01,San Felipe,0
+2024-12-01,Bagumbayan Norte,1
+2024-12-01,Concepcion Grande,0
+2024-12-01,Tinago,0
+2024-12-01,Balatas,2
+2024-12-01,San Felipe,0
+2025-01-01,Bagumbayan Norte,1
+2025-01-01,Concepcion Grande,0
+2025-01-01,Tinago,0
+2025-01-01,Balatas,2
+2025-01-01,San Felipe,1
+2025-02-01,Bagumbayan Norte,0
+2025-02-01,Concepcion Grande,0
+2025-02-01,Tinago,1
+2025-02-01,Balatas,0
+2025-02-01,San Felipe,1
+2025-03-01,Bagumbayan Norte,2
+2025-03-01,Concepcion Grande,1
+2025-03-01,Tinago,3
+2025-03-01,Balatas,2
+2025-03-01,San Felipe,2
+2025-04-01,Bagumbayan Norte,6
+2025-04-01,Concepcion Grande,1
+2025-04-01,Tinago,2
+2025-04-01,Balatas,1
+2025-04-01,San Felipe,3
+2025-05-01,Bagumbayan Norte,1
+2025-05-01,Concepcion Grande,0
+2025-05-01,Tinago,3
+2025-05-01,Balatas,3
+2025-05-01,San Felipe,1
+2025-06-01,Bagumbayan Norte,2
+2025-06-01,Concepcion Grande,4
+2025-06-01,Tinago,2
+2025-06-01,Balatas,7
+2025-06-01,San Felipe,4
+2025-07-01,Bagumbayan Norte,6
+2025-07-01,Concepcion Grande,3
+2025-07-01,Tinago,7
+2025-07-01,Balatas,3
+2025-07-01,San Felipe,4
+2025-08-01,Bagumbayan Norte,3
+2025-08-01,Concepcion Grande,1
+2025-08-01,Tinago,2
+2025-08-01,Balatas,3
+2025-08-01,San Felipe,2
+2025-09-01,Bagumbayan Norte,2
+2025-09-01,Concepcion Grande,9
+2025-09-01,Tinago,2
+2025-09-01,Balatas,4
+2025-09-01,San Felipe,4
+2025-10-01,Bagumbayan Norte,3
+2025-10-01,Concepcion Grande,1
+2025-10-01,Tinago,3
+2025-10-01,Balatas,2
+2025-10-01,San Felipe,3
+2025-11-01,Bagumbayan Norte,0
+2025-11-01,Concepcion Grande,3
+2025-11-01,Tinago,1
+2025-11-01,Balatas,0
+2025-11-01,San Felipe,2
+2025-12-01,Bagumbayan Norte,0
+2025-12-01,Concepcion Grande,0
+2025-12-01,Tinago,1
+2025-12-01,Balatas,0
+2025-12-01,San Felipe,1

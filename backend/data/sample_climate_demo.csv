@@ -1,0 +1,33 @@
+date,barangay,temperature,humidity,rainfall,forecast_risk
+2024-12-01,Bagumbayan Norte,30.5,85,120,Moderate
+2024-12-02,Bagumbayan Norte,31.2,82,95,Low
+2024-12-03,Bagumbayan Norte,29.8,88,150,High
+2024-12-04,Concepcion Grande,30.1,84,110,Moderate
+2024-12-05,Concepcion Grande,31.5,80,75,Low
+2024-12-06,Concepcion Grande,29.5,90,180,High
+2024-12-07,Tinago,30.8,83,100,Moderate
+2024-12-08,Tinago,31.0,81,85,Low
+2024-12-09,Tinago,29.2,87,140,Moderate
+2024-12-10,Balatas,30.3,86,125,Moderate
+2024-12-11,Balatas,31.1,79,70,Low
+2024-12-12,Balatas,29.9,89,160,High
+2024-12-13,San Felipe,30.6,84,105,Moderate
+2024-12-14,San Felipe,31.3,82,90,Low
+2024-12-15,San Felipe,29.7,88,135,Moderate
+2024-12-16,Bagumbayan Norte,30.4,85,115,Moderate
+2024-12-17,Concepcion Grande,30.9,83,100,Moderate
+2024-12-18,Tinago,31.2,81,80,Low
+2024-12-19,Balatas,29.6,90,170,High
+2024-12-20,San Felipe,30.7,84,110,Moderate
+2024-12-21,Bagumbayan Norte,31.0,82,95,Low
+2024-12-22,Concepcion Grande,29.8,87,145,Moderate
+2024-12-23,Tinago,30.5,85,120,Moderate
+2024-12-24,Balatas,31.4,80,65,Low
+2024-12-25,San Felipe,29.4,91,185,High
+2024-12-26,Bagumbayan Norte,30.2,86,130,Moderate
+2024-12-27,Concepcion Grande,30.8,84,105,Moderate
+2024-12-28,Tinago,31.1,82,90,Low
+2024-12-29,Balatas,29.9,88,155,High
+2024-12-30,San Felipe,30.6,85,115,Moderate
+2024-12-31,Bagumbayan Norte,31.3,81,85,Low
+
